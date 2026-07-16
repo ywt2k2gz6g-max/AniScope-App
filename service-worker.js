@@ -1,8 +1,8 @@
-const CACHE = 'aniscope-v1-1';
+const CACHE = 'aniscope-v3.0.0';
 const ASSETS = [
   './','index.html','css/app.css','js/app.js','data/anime.json',
   'manifest.webmanifest','assets/icons/icon-192.png','assets/icons/icon-512.png',
-  'assets/icons/icon-maskable-512.png','assets/icons/apple-touch-icon.png',
+  'assets/icons/icon-maskable-512.png','assets/icons/apple-touch-icon.png','assets/icons/favicon.png',
   'assets/thumbnails/fullmetal-alchemist-brotherhood.jpg',
   'assets/thumbnails/frieren.jpg',
   'assets/thumbnails/haikyu.jpg',

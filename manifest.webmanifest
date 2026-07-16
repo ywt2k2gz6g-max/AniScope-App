@@ -1,12 +1,12 @@
 {
-  "name": "AniScope \u2014 Anton's Anime Companion",
+  "name": "AniScope",
   "short_name": "AniScope",
-  "description": "Anton\u2019s personal anime watchlist, recommendations, and completed collection.",
+  "description": "See your next anime masterpiece.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#08090d",
-  "theme_color": "#08090d",
+  "background_color": "#080910",
+  "theme_color": "#080910",
   "orientation": "portrait-primary",
   "icons": [
     {

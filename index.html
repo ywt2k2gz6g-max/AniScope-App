@@ -2,143 +2,129 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#08090d">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080910">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="AniScope">
-  <meta name="description" content="Anton’s personal anime companion.">
+  <meta name="description" content="AniScope helps you see your next anime masterpiece.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" href="assets/icons/favicon.png">
   <link rel="stylesheet" href="css/app.css">
-  <title>AniScope</title>
+  <title>AniScope — See your next masterpiece</title>
 </head>
 <body>
   <noscript><div class="fatal">AniScope requires JavaScript.</div></noscript>
-
-  <div id="loading" class="loading-screen">
-    <img src="assets/icons/icon-192.png" alt="" class="loading-icon">
-    <p>Loading AniScope…</p>
+  <div id="loading" class="splash">
+    <img src="assets/icons/icon-192.png" alt="AniScope">
+    <strong>AniScope</strong>
+    <span>Seeing your next masterpiece…</span>
+    <i></i>
   </div>
 
-  <div class="app" id="app" hidden>
+  <div id="app" class="app" hidden>
     <header class="topbar">
-      <div class="brandrow">
-        <div class="brand">
-          <img src="assets/icons/icon-192.png" class="brand-icon" alt="">
-          <div>
-            <h1>AniScope</h1>
-            <small>Your personal anime companion</small>
-          </div>
-        </div>
-        <button type="button" class="iconbtn" id="topSearch" aria-label="Open search">⌕</button>
-      </div>
+      <button class="brand" data-page="homePage" aria-label="Home">
+        <img src="assets/icons/icon-192.png" alt="">
+        <span><b>AniScope</b><small>See your next masterpiece.</small></span>
+      </button>
+      <button class="round-btn" id="topSearch" aria-label="Search">⌕</button>
     </header>
 
     <main>
       <section class="page active" id="homePage">
-        <div class="hero">
-          <span class="kicker">PHASE 1 • INSTALLABLE PWA</span>
-          <h2>Find your next masterpiece.</h2>
-          <p>A ranked watchlist built around your taste—great stories, hype, sports, emotion, and unforgettable visuals.</p>
-          <div class="stats">
-            <div class="stat"><b id="watchCount">25</b><span>Watchlist</span></div>
-            <div class="stat"><b id="completedCount">0</b><span>Completed</span></div>
-            <div class="stat"><b>9.2</b><span>Average match</span></div>
+        <article class="hero" id="homeHero">
+          <div class="hero-copy">
+            <span class="eyebrow">PERSONALIZED FOR ANTON</span>
+            <h1>What should you watch next?</h1>
+            <p>Every recommendation has a reason—not just a rating.</p>
+            <button class="primary compact" id="startQuizHome">Take the match quiz</button>
           </div>
-        </div>
+          <div class="stats" id="homeStats"></div>
+        </article>
 
-        <div class="section-head"><h3>Recommended next</h3><span>Highest overall fit</span></div>
-        <button type="button" class="recommend-card" id="featuredCard"></button>
+        <div class="section-title"><div><small>TONIGHT'S PICK</small><h2>Recommended for you</h2></div><span>Highest fit</span></div>
+        <button class="feature-card" id="featuredCard"></button>
 
-        <div class="section-head"><h3>Browse by mood</h3><span>Pick how you feel</span></div>
-        <div class="category-grid" id="homeCategories"></div>
+        <div class="section-title"><div><small>DISCOVER</small><h2>Browse by mood</h2></div><span>Pick a vibe</span></div>
+        <div class="mood-grid" id="homeCategories"></div>
 
-        <div class="section-head">
-          <h3>Top 10 preview</h3>
-          <button type="button" class="chip" data-go="watchlistPage">View all 25</button>
-        </div>
-        <div class="anime-list" id="homeTop10"></div>
+        <div class="section-title"><div><small>RANKED</small><h2>Top matches</h2></div><button class="text-btn" data-page="watchlistPage">View all</button></div>
+        <div class="horizontal-rail" id="homeTopRail"></div>
       </section>
 
       <section class="page" id="searchPage">
-        <div class="section-head"><h3>Search AniScope</h3><span>Title, genre, or mood</span></div>
-        <div class="searchbox">
-          <span>⌕</span>
-          <input id="searchInput" type="search" autocomplete="off" placeholder="Search anime, sports, fantasy…">
-        </div>
+        <div class="page-intro"><small>DISCOVER</small><h1>Search AniScope</h1><p>Find anime by title, genre, mood, or strength.</p></div>
+        <label class="searchbox"><span>⌕</span><input id="searchInput" type="search" autocomplete="off" placeholder="Try “sports,” “beautiful,” or “dark”…"></label>
         <div class="chips" id="searchChips"></div>
         <div class="anime-list" id="searchResults"></div>
       </section>
 
       <section class="page" id="watchlistPage">
-        <div class="section-head"><h3>Top 25 Watchlist</h3><span>Personalized ranking</span></div>
-        <div class="chips" id="watchFilters"></div>
+        <div class="page-intro split"><div><small>YOUR NEXT 25</small><h1>Watchlist</h1><p>Ranked by predicted enjoyment.</p></div><button class="round-btn" id="viewToggle" aria-label="Toggle view">▦</button></div>
+        <div class="toolbar"><div class="chips" id="watchFilters"></div><select id="watchSort" aria-label="Sort watchlist"><option value="rank">AniScope rank</option><option value="score">Match score</option><option value="short">Shortest first</option><option value="title">A–Z</option></select></div>
         <div class="anime-list" id="watchlistResults"></div>
       </section>
 
       <section class="page" id="completedPage">
-        <div class="section-head"><h3>Completed</h3><span>Your ratings will live here</span></div>
+        <div class="page-intro"><small>YOUR COLLECTION</small><h1>Completed</h1><p>Finished anime move here without losing their profile.</p></div>
         <div id="completedResults"></div>
       </section>
 
+      <section class="page" id="quizPage">
+        <div class="page-intro"><small>ANISCOPE MATCH</small><h1>Find your next masterpiece</h1><p>Six quick choices. Personalized results.</p></div>
+        <div class="quiz-progress"><i id="quizProgress"></i></div>
+        <div id="quizBody"></div>
+      </section>
+
       <section class="page" id="profilePage">
-        <div class="profile-card">
-          <span class="test-badge">✓ AniScope installed</span>
-          <h3>Built for Anton</h3>
-          <p>Your Watchlist is ranked by predicted enjoyment. When you finish a title, mark it completed and it moves into your personal collection.</p>
-        </div>
-        <div class="profile-card">
-          <h3>Your anime system</h3>
-          <p><b>Watchlist:</b> personalized recommendations.<br><b>Completed:</b> titles you finish.<br><b>Search:</b> find shows by title, genre, mood, or strength.</p>
-        </div>
-        <div class="profile-card">
-          <h3>Coming next</h3>
-          <p>Your ratings, episode progress, prediction-versus-actual comparisons, notes, and completed-anime rankings will be added without replacing this app.</p>
-        </div>
+        <div class="profile-hero"><img src="assets/icons/icon-192.png" alt=""><div><small>ANISCOPE PROFILE</small><h1>Built for Anton</h1><p>Recommendations shaped around your taste.</p></div></div>
+        <div class="profile-grid" id="profileStats"></div>
+        <article class="profile-card"><h2>Your taste signal</h2><div class="taste-tags"><span>🎨 Great visuals</span><span>🔥 Hype moments</span><span>🧠 Strong stories</span><span>🏀 Sports</span><span>🏁 Good endings</span><span>🎙️ Quality dubs</span></div></article>
+        <article class="profile-card"><h2>AniScope promise</h2><p>Every recommendation explains why it fits you, what might hold you back, and when the show reveals its full potential.</p></article>
+        <article class="profile-card version-card"><span>Version 3.0</span><p>Clean foundation • AniScope Eye branding • iPhone-safe polish</p></article>
       </section>
     </main>
   </div>
 
-  <div class="detail" id="detailView" aria-hidden="true">
-    <div class="detail-hero">
-      <img id="detailImage" alt="">
-      <button type="button" class="backbtn" id="detailBack" aria-label="Close anime profile">‹</button>
-      <div class="detail-title">
-        <span class="kicker" id="detailRank"></span>
-        <h2 id="detailName"></h2>
-        <p id="detailSubtitle"></p>
+  <aside class="detail" id="detailView" aria-hidden="true">
+    <div class="detail-scroll">
+      <div class="detail-hero">
+        <img id="detailImage" alt="">
+        <div class="hero-shade"></div>
+        <button class="backbtn" id="detailBack" aria-label="Close">‹</button>
+        <button class="detail-fav" id="favoriteBtn" aria-label="Favorite">♡</button>
+        <div class="detail-heading"><span class="eyebrow" id="detailRank"></span><h1 id="detailName"></h1><p id="detailSubtitle"></p></div>
+      </div>
+      <div class="detail-body">
+        <section class="decision-card"><div><small>ANISCOPE VERDICT</small><h2 id="detailDecision">Yes—watch it.</h2><p id="detailVerdict"></p></div><div class="match-orb"><b id="detailMatch"></b><span>match</span></div></section>
+        <div class="metric-grid" id="detailMetrics"></div>
+        <div class="tags" id="detailTags"></div>
+
+        <section class="detail-section"><header><span>🎯</span><div><small>WHY IT FITS YOU</small><h2>Reasons you'll love it</h2></div></header><div class="reason-grid" id="detailStrengths"></div></section>
+        <section class="detail-section"><header><span>🧬</span><div><small>TASTE DNA</small><h2>What it feels like</h2></div></header><div class="feels-card" id="detailFeels"></div></section>
+        <section class="detail-section"><header><span>⏱️</span><div><small>THE JOURNEY</small><h2>When it clicks</h2></div></header><div class="timeline" id="detailTimeline"></div></section>
+        <section class="two-col">
+          <article class="signal-card good"><small>🎙️ DUB</small><b id="detailDubScore"></b><p id="detailDub"></p></article>
+          <article class="signal-card good"><small>🏁 ENDING</small><b id="detailEndingScore"></b><p id="detailEnding"></p></article>
+        </section>
+        <section class="detail-section"><header><span>⚠️</span><div><small>BEFORE YOU START</small><h2>Things to know</h2></div></header><div class="warning-list" id="detailConcerns"></div></section>
+        <section class="detail-section"><header><span>📊</span><div><small>SCOUTING REPORT</small><h2>Quick scores</h2></div></header><div class="score-grid" id="detailScores"></div></section>
+        <section class="detail-section"><header><span>💡</span><div><small>WATCH SMARTER</small><h2>Before you start</h2></div></header><ul class="tips" id="detailTips"></ul></section>
+        <div class="actions"><button class="primary" id="completeBtn">Mark completed</button><button class="secondary" id="copyBtn">Copy title</button></div>
       </div>
     </div>
-    <div class="detail-body">
-      <div class="metrics" id="detailMetrics"></div>
-      <div class="tags" id="detailTags"></div>
-      <div class="info-section"><h3>Quick scores</h3><div class="score-grid" id="detailScores"></div></div>
-      <div class="info-section"><h3>Quick verdict</h3><p id="detailVerdict"></p></div>
-      <div class="info-section"><h3>Why I picked it for you</h3><p id="detailWhy"></p></div>
-      <div class="info-section"><h3>Best mood to watch</h3><p id="detailMood"></p></div>
-      <div class="info-section"><h3>What it feels like</h3><p id="detailFeels"></p></div>
-      <div class="info-section"><h3>When it gets good</h3><p id="detailHook"></p></div>
-      <div class="info-section"><h3>Things you might not like</h3><p id="detailWarning"></p></div>
-      <div class="info-section"><h3>Dub quality</h3><p id="detailDub"></p></div>
-      <div class="info-section"><h3>Ending quality/status</h3><p id="detailEnding"></p></div>
-      <div class="info-section"><h3>Before you start</h3><ul class="tips" id="detailTips"></ul></div>
-      <div class="actions">
-        <button type="button" class="primary" id="completeBtn">Mark completed</button>
-        <button type="button" class="secondary" id="copyBtn">Copy title</button>
-      </div>
-    </div>
-  </div>
+  </aside>
 
   <nav class="bottomnav" aria-label="Primary">
-    <button type="button" class="navbtn active" data-page="homePage"><b>⌂</b>Home</button>
-    <button type="button" class="navbtn" data-page="searchPage"><b>⌕</b>Search</button>
-    <button type="button" class="navbtn" data-page="watchlistPage"><b>▤</b>Watchlist</button>
-    <button type="button" class="navbtn" data-page="completedPage"><b>★</b>Completed</button>
-    <button type="button" class="navbtn" data-page="profilePage"><b>◉</b>Profile</button>
+    <button class="navbtn active" data-page="homePage"><b>⌂</b><span>Home</span></button>
+    <button class="navbtn" data-page="searchPage"><b>⌕</b><span>Search</span></button>
+    <button class="navbtn" data-page="watchlistPage"><b>▤</b><span>Watchlist</span></button>
+    <button class="navbtn" data-page="completedPage"><b>★</b><span>Completed</span></button>
+    <button class="navbtn" data-page="profilePage"><b>◉</b><span>Profile</span></button>
   </nav>
-
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="js/app.js" defer></script>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="js/app.js"></script>
 </body>
 </html>
