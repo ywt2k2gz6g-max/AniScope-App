@@ -179,3 +179,186 @@ body{
   font-size: 11px;
   opacity: 0.72;
 }
+.catalog-status {
+  min-height: 70px;
+  padding: 24px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.7;
+}
+body.franchise-open {
+  overflow: hidden;
+}
+
+.franchise-hub {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.franchise-hub.open {
+  display: block;
+}
+
+.franchise-hub-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 6, 18, 0.82);
+  backdrop-filter: blur(8px);
+}
+
+.franchise-hub-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(760px, 100%);
+  height: 100%;
+  overflow-y: auto;
+  background: #0a0e1e;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.45);
+}
+
+.franchise-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(10, 14, 30, 0.85);
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.franchise-banner {
+  min-height: 390px;
+  padding: 110px 36px 30px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+}
+
+.franchise-cover {
+  width: 185px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+}
+
+.franchise-hub-content {
+  padding: 0 36px 60px;
+  color: white;
+}
+
+.franchise-hub-content h1 {
+  margin: 22px 0 14px;
+  font-size: clamp(30px, 5vw, 48px);
+}
+
+.franchise-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.franchise-badge {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(134, 92, 255, 0.18);
+  border: 1px solid rgba(158, 128, 255, 0.4);
+  font-size: 13px;
+}
+
+.franchise-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.franchise-stat-grid div {
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.franchise-stat-grid strong,
+.franchise-stat-grid span {
+  display: block;
+}
+
+.franchise-stat-grid strong {
+  font-size: 24px;
+}
+
+.franchise-stat-grid span {
+  margin-top: 5px;
+  font-size: 12px;
+  opacity: 0.65;
+}
+
+.franchise-section {
+  margin-top: 34px;
+}
+
+.franchise-section h2 {
+  margin-bottom: 14px;
+}
+
+.franchise-entry-list {
+  display: grid;
+  gap: 12px;
+}
+
+.franchise-entry {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.franchise-entry img {
+  width: 62px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.franchise-entry h3 {
+  margin: 0 0 7px;
+  font-size: 15px;
+}
+
+.franchise-entry p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.65;
+}
+
+@media (max-width: 600px) {
+  .franchise-banner {
+    min-height: 310px;
+    padding: 90px 20px 24px;
+  }
+
+  .franchise-cover {
+    width: 135px;
+  }
+
+  .franchise-hub-content {
+    padding: 0 20px 50px;
+  }
+
+  .franchise-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
